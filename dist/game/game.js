@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.roll = exports.simulate = void 0;
 const Item_1 = require("./models/Item");
 const Reward_1 = require("./models/Reward");
+const RewardScreen_1 = require("./models/RewardScreen");
 const Statistic_1 = require("./models/Statistic");
 // standard win factory multipliers for reusability
 const basicWin = [0, 0, 4, 10, 40];
@@ -82,31 +83,13 @@ exports.simulate = simulate;
 // Each entry represents a column
 // Lines are formed across columns based on certain definitions (like neighboring)
 // To think how to make this reusable
-// TODO refactor to return the winning lines from the screen
+// TODO refactor
 function checkWin(screen) {
     const reward = [];
     lineConfiguration.forEach(config => {
-        // tslint:disable-next-line:no-console
-        console.log("Checking line: " + config);
         const first = screen[0][config[0]]; // first element from line to check
         let current = first; // second element from line to check
         let counter = 0; // first element equal to itself
-        // // Loop through
-        // for(i = 1; i < numberOfColumns; i++) {
-        //     counter ++;
-        // }
-        // let counter = 1;    // store how many elements in the line are identical to the first
-        // // let i = 2;  // iterator for line
-        // K K K K K
-        // first = 0, current = 0, counter = 0
-        // first = 0, current = 1, counter = 1
-        // first = 0, current = 2, counter = 2
-        // first = 0, current = 3, counter = 3
-        // first = 0, current = 4, counter = 4
-        // K A K K K
-        // first = 0, current = 0, counter = 0
-        // first = 0, current = 1, counter = 1
-        // first = 0, current = 2, counter = 2
         while (first === current && counter <= numberOfColumns) {
             // console.log("First: " + first + " Current: " + current + " Counter: " + counter);
             counter++;
@@ -131,12 +114,7 @@ function checkWin(screen) {
 function roll() {
     const screen = getRandomScreen();
     const reward = checkWin(screen);
-    let total = 0;
-    reward.forEach(winLine => {
-        total += winLine.multiplier;
-    });
-    return [...screen[0].map((_, colIndex) => screen.map(row => row[colIndex])), "You have won a grand total: " + total];
+    return new RewardScreen_1.RewardScreen(screen[0].map((_, colIndex) => screen.map(row => row[colIndex])), reward);
 }
 exports.roll = roll;
-// module.exports = {roll, simulate, checkWin};
 //# sourceMappingURL=game.js.map

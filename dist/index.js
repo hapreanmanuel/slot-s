@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
     res.send("Hello world!");
 });
 app.get("/roll", (req, res) => {
-    res.send((0, game_1.roll)());
+    res.json((0, game_1.roll)());
 });
 app.get("/simulate/:size", (req, res) => {
     res.send((0, game_1.simulate)(Number(req.params.size)));

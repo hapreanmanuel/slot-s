@@ -11,7 +11,7 @@ app.get( "/", ( req, res ) => {
 
 
 app.get( "/roll", (req, res) => {
-    res.send(roll());
+    res.json(roll());
 });
 
 app.get( "/simulate/:size", (req, res) => {
@@ -22,4 +22,4 @@ app.get( "/simulate/:size", (req, res) => {
 app.listen( port, () => {
     // tslint:disable-next-line:no-console
     console.log( `server started at http://localhost:${ port }` );
-} );
+});
