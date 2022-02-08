@@ -1,11 +1,11 @@
-import {Reward} from "./Reward";
+import { Reward } from "./Reward";
 
 export class RewardScreen {
-    screen:string[][];
-    rewards:Reward[];
-    totalMultiplier:number;
+    screen: string[][];
+    rewards: Reward[];
+    totalMultiplier: number;
 
-    constructor(screen: string[][], rewards:Reward[]) {
+    constructor(screen: string[][], rewards: Reward[]) {
         this.screen = screen;
         this.rewards = rewards;
         this.totalMultiplier = 0;
