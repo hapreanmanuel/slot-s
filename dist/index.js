@@ -12,9 +12,13 @@ app.get("/", (req, res) => {
     res.send("Hello world!");
 });
 app.get("/roll", (req, res) => {
+    // tslint:disable-next-line:no-console
+    console.log(`request: roll`);
     res.json((0, game_1.roll)());
 });
 app.get("/simulate/:size", (req, res) => {
+    // tslint:disable-next-line:no-console
+    console.log(`request: simulate` + req.params.size);
     res.send((0, game_1.simulate)(Number(req.params.size)));
 });
 // start the Express server
